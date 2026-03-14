@@ -1,13 +1,8 @@
-import { useState } from 'react'
+import { AppRouter } from './router/AppRouter'
 import './App.css'
 
 function App() {
-
-  return (
-    <>
-      <h2>Vite + React</h2>
-    </>
-  )
+  return <AppRouter />
 }
 
 export default App
