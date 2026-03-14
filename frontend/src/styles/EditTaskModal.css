@@ -12,9 +12,9 @@
 }
 
 .modal-content {
-  background: white;
+  background: linear-gradient(135deg, #f8f9ff 0%, #f5f7ff 100%);
   border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.25);
   max-width: 500px;
   width: 90%;
   max-height: 90vh;
@@ -37,14 +37,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem;
-  border-bottom: 1px solid #e0e0e0;
+  padding: 1.5rem 2rem;
+  border-bottom: none;
 }
 
 .modal-header h2 {
   margin: 0;
-  font-size: 1.5rem;
-  color: #333;
+  font-size: 1.6rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  letter-spacing: 0.3px;
 }
 
 .modal-close {
@@ -69,37 +74,47 @@
 }
 
 .edit-form {
-  padding: 1.5rem;
+  padding: 1.5rem 2rem;
 }
 
 .form-group {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.2rem;
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
+  margin-bottom: 0.6rem;
+  font-weight: 700;
   color: #333;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .form-group input,
 .form-group textarea {
   width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #ddd;
+  padding: 0.9rem 1rem;
+  border: 2px solid #e0e0e0;
   border-radius: 6px;
   font-size: 0.95rem;
   font-family: inherit;
-  transition: border-color 0.2s ease;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.form-group input:hover,
+.form-group textarea:hover {
+  border-color: #667eea;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
   border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+  background: #fafbff;
 }
 
 .form-group input:disabled,
@@ -112,28 +127,33 @@
   display: flex;
   gap: 1rem;
   justify-content: flex-end;
-  padding-top: 1.5rem;
-  border-top: 1px solid #e0e0e0;
+  padding: 1.5rem 2rem;
+  border-top: none;
 }
 
 .btn-cancel,
 .btn-save {
-  padding: 0.7rem 1.5rem;
+  padding: 0.8rem 1.5rem;
   border: none;
   border-radius: 6px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s ease;
-  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .btn-cancel {
-  background: #f0f0f0;
+  background: white;
   color: #333;
+  border: 2px solid #e0e0e0;
 }
 
 .btn-cancel:hover:not(:disabled) {
-  background: #e0e0e0;
+  border-color: #667eea;
+  color: #667eea;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
 }
 
 .btn-cancel:disabled {
@@ -144,11 +164,12 @@
 .btn-save {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
 .btn-save:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
 }
 
 .btn-save:disabled {
