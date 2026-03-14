@@ -34,25 +34,27 @@ export const TaskCard = ({ task, onMarkDone, onTaskUpdated }: TaskCardProps) => 
         <div className="task-content">
           <h3 className="task-title">{currentTask.title}</h3>
           <p className="task-description">{currentTask.description}</p>
-          <span className="task-date">{formattedDate}</span>
         </div>
-        <div className="task-buttons">
-          <button
-            className="btn-edit"
-            onClick={() => setIsEditModalOpen(true)}
-            disabled={currentTask.completed}
-            title="Edit task"
-          >
-            ✎ Edit
-          </button>
-          <button
-            className="btn-done"
-            onClick={() => onMarkDone(currentTask.id)}
-            disabled={currentTask.completed}
-            title={currentTask.completed ? 'Task completed' : 'Mark as done'}
-          >
-            {currentTask.completed ? '✓ Completed' : '✓ Mark Done'}
-          </button>
+        <div className="task-footer">
+          <span className="task-date">{formattedDate}</span>
+          <div className="task-buttons">
+            <button
+              className="btn-edit"
+              onClick={() => setIsEditModalOpen(true)}
+              disabled={currentTask.completed}
+              title="Edit task"
+            >
+              ✎ Edit
+            </button>
+            <button
+              className="btn-done"
+              onClick={() => onMarkDone(currentTask.id)}
+              disabled={currentTask.completed}
+              title={currentTask.completed ? 'Task completed' : 'done'}
+            >
+              {currentTask.completed ? '✓ Completed' : '✓ Done'}
+            </button>
+          </div>
         </div>
       </div>
 

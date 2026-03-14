@@ -3,9 +3,8 @@
   border-radius: 12px;
   padding: 1rem;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 0.8rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
   border-left: 5px solid #667eea;
@@ -40,8 +39,14 @@
 
 .task-date {
   font-size: 0.85rem;
-  margin-top: 1.8rem;
   color: #999;
+}
+
+.task-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .task-buttons {
@@ -54,16 +59,17 @@
   background: linear-gradient(135deg, #50c878 0%, #2ecc71 100%);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 4px;
   font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
   flex-shrink: 0;
   transition: all 0.3s ease;
-  font-size: 0.95rem;
+  font-size: 0.65rem;
+  line-height: 1;
   opacity: 0;
   pointer-events: none;
-  padding: 0rem 1rem;
+  padding: 0.2rem 0.4rem;
 }
 
 .task-card:hover .btn-edit {
@@ -86,16 +92,17 @@
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 4px;
   font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
   flex-shrink: 0;
   transition: all 0.3s ease;
-  font-size: 0.95rem;
+  font-size: 0.65rem;
+  line-height: 1;
   opacity: 0;
   pointer-events: none;
-  padding: 0rem 1rem;
+  padding: 0.2rem 0.4rem;
 }
 
 .task-card:hover .btn-done {
