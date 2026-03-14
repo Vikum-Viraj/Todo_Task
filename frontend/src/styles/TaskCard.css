@@ -8,7 +8,8 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
   border-left: 5px solid #667eea;
-  width: 525px;
+  width: 100%;
+  max-width: 600px;
 }
 
 .task-card:hover {
@@ -67,9 +68,9 @@
   transition: all 0.3s ease;
   font-size: 0.65rem;
   line-height: 1;
+  padding: 0.2rem 0.8rem;
   opacity: 0;
   pointer-events: none;
-  padding: 0.2rem 0.4rem;
 }
 
 .task-card:hover .btn-edit {
@@ -100,9 +101,9 @@
   transition: all 0.3s ease;
   font-size: 0.65rem;
   line-height: 1;
+  padding: 0.2rem 0.4rem;
   opacity: 0;
   pointer-events: none;
-  padding: 0.2rem 0.4rem;
 }
 
 .task-card:hover .btn-done {
@@ -125,24 +126,38 @@
   .task-card {
     flex-direction: column;
     padding: 1rem;
-    gap: 1rem;
+    gap: 0.8rem;
+    width: 100%;
   }
 
   .task-title {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
+  .task-description {
+    font-size: 0.85rem;
+  }
+
+  .btn-edit,
   .btn-done {
-    width: 100%;
-    padding: 0.8rem;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    padding: 0.35rem 0.6rem;
+    font-size: 0.6rem;
+  }
+
+  .task-buttons {
+    flex-wrap: wrap;
+    gap: 0.4rem;
   }
 }
 
 @media (max-width: 600px) {
   .task-card {
     padding: 0.8rem;
-    gap: 0.8rem;
+    gap: 0.6rem;
     border-radius: 8px;
+    border-left: 4px solid #667eea;
   }
 
   .task-content {
@@ -150,24 +165,40 @@
   }
 
   .task-title {
-    font-size: 0.95rem;
-    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+    margin-bottom: 0.2rem;
+    font-weight: 600;
   }
 
   .task-description {
     font-size: 0.8rem;
-    margin-bottom: 0.4rem;
-    max-height: 2.8em;
+    margin-bottom: 0.3rem;
+    max-height: 3em;
     overflow: hidden;
   }
 
   .task-date {
-    font-size: 0.75rem;
-    margin-top: 0.5rem;
+    font-size: 0.7rem;
   }
 
+  .task-footer {
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .btn-edit,
   .btn-done {
-    padding: 0.6rem 0.8rem;
-    font-size: 0.8rem;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    padding: 0.3rem 0.5rem;
+    font-size: 0.55rem;
+    flex: 1;
+    min-width: 50px;
+  }
+
+  .task-buttons {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 0.3rem;
   }
 }
