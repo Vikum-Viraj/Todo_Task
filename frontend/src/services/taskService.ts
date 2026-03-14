@@ -13,6 +13,12 @@ export interface CreateTaskRequest {
   description: string;
 }
 
+export interface ApiResponse<T> {
+  data: T;
+  message: string | null;
+  success: boolean;
+}
+
 export const taskService = {
   /**
    * GET /api/todos
@@ -20,8 +26,8 @@ export const taskService = {
    */
   getAllTasks: async (): Promise<Task[]> => {
     try {
-      const response = await axiosInstance.get<Task[]>('/todos');
-      return response.data;
+      const response = await axiosInstance.get<ApiResponse<Task[]>>('/todos');
+      return response.data.data;
     } catch (error) {
       console.error('Error fetching tasks:', error);
       throw error;
@@ -35,8 +41,8 @@ export const taskService = {
    */
   createTask: async (taskData: CreateTaskRequest): Promise<Task> => {
     try {
-      const response = await axiosInstance.post<Task>('/todos', taskData);
-      return response.data;
+      const response = await axiosInstance.post<ApiResponse<Task>>('/todos', taskData);
+      return response.data.data;
     } catch (error) {
       console.error('Error creating task:', error);
       throw error;
@@ -50,8 +56,8 @@ export const taskService = {
    */
   markTaskDone: async (taskId: number): Promise<Task> => {
     try {
-      const response = await axiosInstance.put<Task>(`/todos/${taskId}/done`);
-      return response.data;
+      const response = await axiosInstance.put<ApiResponse<Task>>(`/todos/${taskId}/done`);
+      return response.data.data;
     } catch (error) {
       console.error('Error marking task as done:', error);
       throw error;
@@ -66,8 +72,8 @@ export const taskService = {
    */
   updateTask: async (taskId: number, taskData: CreateTaskRequest): Promise<Task> => {
     try {
-      const response = await axiosInstance.put<Task>(`/todos/${taskId}`, taskData);
-      return response.data;
+      const response = await axiosInstance.put<ApiResponse<Task>>(`/todos/${taskId}`, taskData);
+      return response.data.data;
     } catch (error) {
       console.error('Error updating task:', error);
       throw error;
