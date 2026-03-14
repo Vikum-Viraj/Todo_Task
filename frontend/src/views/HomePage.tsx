@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import type { Task } from '../services/taskService';
 import { taskService, type CreateTaskRequest } from '../services/taskService';
+import { TaskCard } from '../components/TaskCard';
 import '../styles/HomePage.css';
 
 export const HomePage = () => {
@@ -177,19 +178,11 @@ export const HomePage = () => {
             {!loading && tasks.length > 0 && (
               <div className="tasks-list">
                 {tasks.map(task => (
-                  <div key={task.id} className="task-item">
-                    <div className="task-info">
-                      <h3 className="task-title">{task.title}</h3>
-                      <p className="task-description">{task.description}</p>
-                    </div>
-                    <button
-                      className="btn-done"
-                      onClick={() => handleMarkDone(task.id)}
-                      disabled={task.completed}
-                    >
-                      Done
-                    </button>
-                  </div>
+                  <TaskCard 
+                    key={task.id} 
+                    task={task} 
+                    onMarkDone={handleMarkDone}
+                  />
                 ))}
               </div>
             )}

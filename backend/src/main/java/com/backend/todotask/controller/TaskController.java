@@ -50,6 +50,4 @@ public class TaskController {
                     .body("Failed to mark Todo as done: " + e.getMessage());
         }
     }
-        }
-    }
 }
