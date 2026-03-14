@@ -1,40 +1,39 @@
 .create-task-page {
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background: #f5f5f5;
   min-height: calc(100vh - 70px);
-  padding: 2rem 1rem;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
+  padding: 2rem 1rem;
 }
 
 .create-task-container {
   background: white;
-  border-radius: 12px;
-  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 3rem 2rem;
+  max-width: 500px;
   width: 100%;
-  max-width: 600px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
 .create-task-header {
   margin-bottom: 2rem;
-  border-bottom: 3px solid #667eea;
-  padding-bottom: 1.5rem;
+  text-align: center;
 }
 
 .create-task-header h2 {
   margin: 0 0 0.5rem 0;
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: #333;
 }
 
 .create-task-header p {
   margin: 0;
   color: #666;
-  font-size: 1rem;
+  font-size: 0.95rem;
 }
 
-.task-form {
+.add-task-form {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -49,18 +48,17 @@
 .form-group label {
   font-weight: 600;
   color: #333;
-  font-size: 1rem;
+  font-size: 0.95rem;
 }
 
 .form-group input,
 .form-group textarea {
   padding: 0.8rem;
-  border: 2px solid #e0e0e0;
-  border-radius: 8px;
-  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.95rem;
   font-family: inherit;
-  transition: all 0.3s ease;
-  resize: vertical;
+  transition: border-color 0.3s;
 }
 
 .form-group input:focus,
@@ -76,49 +74,49 @@
   cursor: not-allowed;
 }
 
-.char-count {
-  font-size: 0.85rem;
-  color: #999;
-  text-align: right;
+.form-error {
+  background: #fee;
+  color: #c33;
+  padding: 0.8rem;
+  border-radius: 4px;
+  border-left: 4px solid #c33;
+  font-size: 0.9rem;
 }
 
 .form-actions {
   display: flex;
   gap: 1rem;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 
 .btn-cancel,
 .btn-submit {
   flex: 1;
-  padding: 1rem;
+  padding: 0.8rem 1.5rem;
   border: none;
-  border-radius: 8px;
-  font-size: 1rem;
+  border-radius: 4px;
+  font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background 0.3s;
 }
 
 .btn-cancel {
-  background-color: #f0f0f0;
+  background: #e0e0e0;
   color: #333;
-  border: 2px solid #e0e0e0;
 }
 
 .btn-cancel:hover:not(:disabled) {
-  background-color: #e0e0e0;
-  border-color: #d0d0d0;
+  background: #d0d0d0;
 }
 
 .btn-submit {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #0052cc;
   color: white;
 }
 
 .btn-submit:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  background: #0045a3;
 }
 
 .btn-cancel:disabled,
@@ -127,34 +125,12 @@
   cursor: not-allowed;
 }
 
-.error-message {
-  background: #fee;
-  color: #c33;
-  padding: 1rem;
-  border-radius: 8px;
-  border-left: 4px solid #c33;
-}
-
 @media (max-width: 768px) {
-  .create-task-page {
-    min-height: calc(100vh - 60px);
-    padding: 1rem 0.5rem;
-  }
-
   .create-task-container {
-    padding: 1.5rem;
+    padding: 2rem 1.5rem;
   }
 
   .create-task-header h2 {
     font-size: 1.5rem;
-  }
-
-  .form-actions {
-    flex-direction: column;
-  }
-
-  .btn-cancel,
-  .btn-submit {
-    width: 100%;
   }
 }
