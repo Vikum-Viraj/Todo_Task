@@ -1,48 +1,60 @@
-import axios from 'axios';
-import type { AxiosInstance } from 'axios';
+import axiosInstance from './axiosConfig';
 
-// API Configuration
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+export interface Task {
+  id: number;
+  title: string;
+  description: string;
+  completed: boolean;
+  createdAt: string;
+}
 
-// Create axios instance
-const axiosInstance: AxiosInstance = axios.create({
-  baseURL: `${API_BASE_URL}/api`,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  timeout: 10000, // 10 seconds
-});
+export interface CreateTaskRequest {
+  title: string;
+  description: string;
+}
 
-// Request Interceptor
-axiosInstance.interceptors.request.use(
-  (config) => {
-    // Add any authentication tokens if needed
-    // const token = localStorage.getItem('authToken');
-    // if (token) {
-    //   config.headers.Authorization = `Bearer ${token}`;
-    // }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
-
-// Response Interceptor
-axiosInstance.interceptors.response.use(
-  (response) => {
-    return response;
-  },
-  (error) => {
-    // Handle global error responses
-    if (error.response?.status === 401) {
-      // Handle unauthorized - redirect to login if needed
-      console.error('Unauthorized access');
-    } else if (error.response?.status === 500) {
-      console.error('Server error:', error.response.data);
+export const taskService = {
+  /**
+   * GET /api/todos
+   * Fetch the latest 5 incomplete todos
+   */
+  getAllTasks: async (): Promise<Task[]> => {
+    try {
+      const response = await axiosInstance.get<Task[]>('/todos');
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching tasks:', error);
+      throw error;
     }
-    return Promise.reject(error);
-  }
-);
+  },
 
-export default axiosInstance;
+  /**
+   * POST /api/todos
+   * Create a new todo task
+   * @param taskData - Object containing title and description
+   */
+  createTask: async (taskData: CreateTaskRequest): Promise<Task> => {
+    try {
+      const response = await axiosInstance.post<Task>('/todos', taskData);
+      return response.data;
+    } catch (error) {
+      console.error('Error creating task:', error);
+      throw error;
+    }
+  },
+
+  /**
+   * PUT /api/todos/{id}/done
+   * Mark a todo as completed
+   * @param taskId - ID of the task to mark as done
+   */
+  markTaskDone: async (taskId: number): Promise<Task> => {
+    try {
+      const response = await axiosInstance.put<Task>(`/todos/${taskId}/done`);
+      return response.data;
+    } catch (error) {
+      console.error('Error marking task as done:', error);
+      throw error;
+    }
+  },
+};
