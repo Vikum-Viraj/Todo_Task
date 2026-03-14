@@ -10,4 +10,5 @@ public interface TaskService {
     TaskEntity createTodo(TaskDTO request);
     List<TaskEntity> getLatestTodos();
     TaskEntity markTodoDone(Long id);
+    TaskEntity updateTodo(Long id, TaskDTO request);
 }

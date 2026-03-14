@@ -53,4 +53,14 @@ public class TaskServiceImpl implements TaskService {
             throw new RuntimeException("Error while updating Todo: " + e.getMessage());
         }
     }
+
+    @Override
+    public TaskEntity updateTodo(Long id, TaskDTO request) {
+        TaskEntity task = todoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Todo not found with id: " + id));
+        task.setTitle(request.getTitle());
+        task.setDescription(request.getDescription());
+
+        return todoRepository.save(task);
+    }
 }

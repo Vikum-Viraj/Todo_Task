@@ -57,4 +57,20 @@ export const taskService = {
       throw error;
     }
   },
+
+  /**
+   * PUT /api/todos/{id}
+   * Update a todo task
+   * @param taskId - ID of the task to update
+   * @param taskData - Object containing title and description
+   */
+  updateTask: async (taskId: number, taskData: CreateTaskRequest): Promise<Task> => {
+    try {
+      const response = await axiosInstance.put<Task>(`/todos/${taskId}`, taskData);
+      return response.data;
+    } catch (error) {
+      console.error('Error updating task:', error);
+      throw error;
+    }
+  },
 };

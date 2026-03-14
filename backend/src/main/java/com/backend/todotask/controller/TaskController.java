@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("/api/todos")
 public class TaskController {
 
-    private final TaskService taskService; // ✅ interface, final
+    private final TaskService taskService;
 
     public TaskController(TaskService taskService) {
         this.taskService = taskService;
@@ -48,6 +48,16 @@ public class TaskController {
         } catch (Exception e) {
             return ResponseEntity.internalServerError()
                     .body("Failed to mark Todo as done: " + e.getMessage());
+        }
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateTodo(@PathVariable Long id,@RequestBody TaskDTO request) {
+        try {
+            TaskEntity updatedTask = taskService.updateTodo(id, request);
+            return ResponseEntity.ok(updatedTask);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError()
+                    .body("Failed to update Todo: " + e.getMessage());
         }
     }
 }

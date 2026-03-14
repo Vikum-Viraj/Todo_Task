@@ -45,6 +45,11 @@ export const HomePage = () => {
     }
   };
 
+  const handleTaskUpdated = (updatedTask: Task) => {
+    // Update the task in the local state
+    setTasks(tasks.map(task => task.id === updatedTask.id ? updatedTask : task));
+  };
+
   useEffect(() => {
     fetchTasks();
   }, []);
@@ -90,6 +95,7 @@ export const HomePage = () => {
                     key={task.id} 
                     task={task} 
                     onMarkDone={handleMarkDone}
+                    onTaskUpdated={handleTaskUpdated}
                   />
                 ))}
               </div>
