@@ -22,7 +22,7 @@
 
 /* Left Column: Form Section */
 .form-section {
-  padding: 3rem 2rem;
+  padding: 0.5rem 2rem 3rem 2rem;
   border-right: 1px solid #e0e0e0;
   background: #fafafa;
 }
@@ -108,7 +108,7 @@
 
 /* Right Column: Tasks Section */
 .tasks-section {
-  padding: 3rem 2rem;
+  padding: 0.8rem 2rem 3rem 2rem;
   background: white;
   display: flex;
   flex-direction: column;
