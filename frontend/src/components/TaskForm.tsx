@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 import type { CreateTaskRequest } from '../services/taskService';
 import { taskService } from '../services/taskService';
 
@@ -63,6 +64,9 @@ export const TaskForm = ({ onTaskCreated, onCancel, showActionButtons = false }:
 
       // Reset form
       setFormData({ title: '', description: '' });
+      
+      // Show success toast
+      toast.success('Task created successfully!');
       
       // Call callback if provided
       if (onTaskCreated) {

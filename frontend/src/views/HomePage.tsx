@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 import type { Task } from '../services/taskService';
 import { taskService } from '../services/taskService';
 import { TaskCard } from '../components/TaskCard';
@@ -35,9 +36,11 @@ export const HomePage = () => {
   const handleMarkDone = async (taskId: number) => {
     try {
       await taskService.markTaskDone(taskId);
+      toast.success('Task marked as done!');
       fetchTasks();
     } catch (err) {
       setError('Failed to mark task as done.');
+      toast.error('Failed to mark task as done.');
       console.error(err);
     }
   };
