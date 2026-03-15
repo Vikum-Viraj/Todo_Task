@@ -91,7 +91,7 @@ docker-compose up frontend
 
 ### Frontend (React + Vite)
 - **Port:** 5173
-- **API Base URL:** http://localhost:8097/api
+- **API Base URL:** http://localhost:8097
 
 ### Database (MySQL)
 - **Port:** 3307 (external), 3306 (internal)
@@ -106,6 +106,84 @@ docker-compose up frontend
 - `PUT /api/todos/{id}` - Update a todo
 - `PUT /api/todos/{id}/done` - Mark a todo as complete
 - `DELETE /api/todos/{id}` - Delete a todo
+
+## Frontend Testing
+
+### Test Setup
+
+The frontend uses the following testing stack:
+
+- **Test Runner:** Vitest (Vite-native, Jest-compatible)
+- **Testing Library:** React Testing Library
+- **DOM Environment:** JSDOM
+- **Test Files Location:** `frontend/src/__tests__/`
+- **Setup File:** `frontend/src/test/setup.ts`
+
+### Test Files
+
+```
+frontend/src/__tests__/
+├── components/
+│   ├── TaskCard.test.tsx        # Todo task card component tests
+│   ├── TaskForm.test.tsx        # Todo creation form tests
+│   └── EditTaskModal.test.tsx   # Todo edit modal tests
+```
+
+### Running Frontend Tests
+
+#### Run Tests Locally
+
+```bash
+# Navigate to frontend directory
+cd frontend
+
+# Install dependencies (if not already installed)
+npm install
+
+# Run tests in watch mode (interactive, re-runs on file changes)
+npm run test
+
+# Run tests with UI dashboard
+npm run test:ui
+
+# Run tests once (CI mode)
+npm run test:run
+```
+
+#### Run Tests in Docker
+
+```bash
+# From project root directory
+cd /path/to/MBTech
+
+# Run tests in a temporary Docker container
+docker-compose exec frontend npm run test:run
+
+# Or build a container and run tests
+docker build -f frontend/Dockerfile -t frontend-tests --target builder ./frontend && \
+  docker run --rm frontend-tests npm run test:run
+```
+
+### Test Output
+
+Tests will display:
+- Number of passed/failed tests
+- Code coverage (if enabled)
+- Detailed error messages for failed assertions
+
+### Test Coverage
+
+To view test coverage, you can extend the test scripts in `package.json`:
+
+```bash
+npm run test -- --coverage
+```
+
+### Component Tests Included
+
+- **TaskCard.test.tsx** - Tests display and completion of todos
+- **TaskForm.test.tsx** - Tests todo creation form submission and validation
+- **EditTaskModal.test.tsx** - Tests todo editing functionality
 
 ## Troubleshooting
 
