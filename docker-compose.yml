@@ -1,0 +1,51 @@
+version: '3.9'
+
+volumes:
+  db-data:
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: todotask-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: task
+    ports:
+      - "3307:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 5s
+      retries: 10
+      start_period: 10s
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: todotask-backend
+    ports:
+      - "8097:8097"
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: task
+      DB_USER: root
+      DB_PASSWORD: root
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_BASE_URL: http://localhost:8097
+    container_name: todotask-frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
